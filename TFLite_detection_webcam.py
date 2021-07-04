@@ -220,9 +220,11 @@ while True:
     frame_rate_calc= 1/time1
 
     # Press 'q' to quit
+    # Add a button for quit option
     if cv2.waitKey(1) == ord('q'):
         break
 
 # Clean up
+# Show the total count at the end
 cv2.destroyAllWindows()
 videostream.stop()
