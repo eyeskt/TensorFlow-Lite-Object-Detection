@@ -22,6 +22,7 @@ import sys
 import time
 from threading import Thread
 import importlib.util
+import RPi.GPIO as GPIO
 
 # Define VideoStream class to handle streaming of video from webcam in separate processing thread
 # Source - Adrian Rosebrock, PyImageSearch: https://www.pyimagesearch.com/2015/12/28/increasing-raspberry-pi-fps-with-python-and-opencv/
@@ -157,6 +158,18 @@ freq = cv2.getTickFrequency()
 # Initialize video stream
 videostream = VideoStream(resolution=(imW,imH),framerate=30).start()
 time.sleep(1)
+
+# Initialize RaspBerry config
+LightSensor_Input = 5
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LightSensor_Input, GPIO.IN)
+
+# Wait for LightSensor input to start the object detection 
+while True:
+    print(' Wait for Light Sensor Input ')
+    if (GPIO.input(LightSensor_Input)==0):
+        break
 
 #for frame1 in camera.capture_continuous(rawCapture, format="bgr",use_video_port=True):
 while True:
