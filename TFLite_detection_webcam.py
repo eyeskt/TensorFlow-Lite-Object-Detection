@@ -222,7 +222,7 @@ while True:
             cv2.rectangle(frame, (xmin, label_ymin-labelSize[1]-10), (xmin+labelSize[0], label_ymin+baseLine-10), (255, 255, 255), cv2.FILLED) # Draw white box to put label text in
 
             # Drag rectangle and text for the warning
-	    kids = "person"
+            kids = "person"
             if kids in label:
                 label = "Warning"
                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (10, 0, 255), 2) # Draw rectangle
